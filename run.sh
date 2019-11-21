@@ -23,7 +23,7 @@ MTG_ENV="$MTG_CONFIG/env"
 
 if [ ! -f "$MTG_ENV" ]; then
     MTG_IMAGENAME="${MTG_IMAGENAME:-nineseconds/mtg:latest}"
-    MTG_PORT="${MTG_PORT:-3128}"
+    MTG_PORT="${MTG_PORT:-7443}"
     MTG_CONTAINER="${MTG_CONTAINER:-mtg}"
 
     echo "MTG_IMAGENAME=${MTG_IMAGENAME}" > "$MTG_ENV"
@@ -54,5 +54,5 @@ docker run \
         --restart=unless-stopped \
         --name "$MTG_CONTAINER" \
         --ulimit nofile=51200:51200 \
-        -p "$MTG_PORT:3128" \
+        -p "$MTG_PORT:7443" \
     "$MTG_IMAGENAME" run "$(cat "$MTG_SECRET")"
